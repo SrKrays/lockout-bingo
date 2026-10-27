@@ -1,0 +1,18 @@
+# Blueprint de Render: API .NET (Docker) + PostgreSQL gratis.
+services:
+  - type: web
+    name: lockout-bingo-api
+    runtime: docker
+    rootDir: backend
+    plan: free
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: lockout-bingo-db
+          property: connectionString
+      - key: AllowedOrigins
+        sync: false # ej: https://lockout-bingo.vercel.app
+
+databases:
+  - name: lockout-bingo-db
+    plan: free
